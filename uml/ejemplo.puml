@@ -1,0 +1,44 @@
+@startuml
+skinparam classAttributeIconSize 0
+abstract class PreparadorBebida {
+  - pedido: PedidoBebida
+  + PreparadorBebida(pedido)
+  + preparar(): void {final}
+  - mostrarInicio(): void
+  - hervirAgua(): void
+  # prepararBase(): void {abstract}
+  - servirEnTaza(): void
+  # agregarComplementos(): void
+  - mostrarResumen(): void
+  # nombreBebida(): String {abstract}
+  # getPedido(): PedidoBebida
+}
+class PreparadorCafe {
+  + PreparadorCafe(pedido)
+  # nombreBebida(): String
+  # prepararBase(): void
+  # agregarComplementos(): void
+}
+class PreparadorTe {
+  + PreparadorTe(pedido)
+  # nombreBebida(): String
+  # prepararBase(): void
+  # agregarComplementos(): void
+}
+class PedidoBebida {
+  - tamano: TamanoBebida
+  - cucharaditasAzucar: int
+  + getTamano(): TamanoBebida
+  + getCucharaditasAzucar(): int
+}
+enum TamanoBebida {
+  CHICO
+  MEDIANO
+  GRANDE
+  + getMililitrosAgua(): int
+}
+PreparadorBebida <|-- PreparadorCafe
+PreparadorBebida <|-- PreparadorTe
+PreparadorBebida --> PedidoBebida : contiene
+PedidoBebida --> TamanoBebida : tiene
+@enduml

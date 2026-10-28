@@ -1,0 +1,21 @@
+@startuml
+skinparam classAttributeIconSize 0
+abstract class PreparadorBase {
+  + preparar(): void {final}
+  # prepararParteEspecifica(): void {abstract}
+  # agregarPasoOpcional(): void
+}
+class PreparadorConcretoA {
+  # prepararParteEspecifica(): void
+  # agregarPasoOpcional(): void
+}
+class PreparadorConcretoB {
+  # prepararParteEspecifica(): void
+}
+PreparadorBase <|-- PreparadorConcretoA
+PreparadorBase <|-- PreparadorConcretoB
+note right of PreparadorBase::preparar
+  Define los pasos y su orden.
+  Las subclases no cambian el algoritmo general.
+end note
+@enduml
